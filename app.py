@@ -23,14 +23,23 @@ genius = lyricsgenius.Genius(genius_token)
 CLIENT_ID = "9c2bf5fc8cf44b9f826b56adda060785"
 CLIENT_SECRET = "f356e5321b9548f39bba9bb7d3046f51"
 
-@app.route('/api/top-words', methods=['POST'])
+@app.route('/api/top-words', methods=['GET', 'POST'])
 def top_words():
-    artist_name = request.json.get('artistName')
-    num_words = request.json.get('numWords')
+    if request.method == 'POST':
+        artist_name = request.json.get('artistName')
+        num_words = request.json.get('numWords')
+    elif request.method == 'GET':
+        artist_name = request.args.get('artistName')
+        num_words = request.args.get('numWords')
+    else:
+        return jsonify({'success': False, 'message': 'Method not allowed.'}), 405
+
+    if artist_name is None or num_words is None:
+        return jsonify({'success': False, 'message': 'Invalid parameters.'}), 400
 
     access_token = get_spotify_access_token()
     if not access_token:
-        return jsonify({'success': False, 'message': 'Failed to retrieve Spotify access token.'})
+        return jsonify({'success': False, 'message': 'Failed to retrieve Spotify access token.'}), 500
 
     headers = {
         'Authorization': 'Bearer ' + access_token
@@ -86,7 +95,8 @@ def top_words():
 
         return jsonify({'success': True, 'topWords': top_words})
     else:
-        return jsonify({'success': False, 'message': 'Artist not found.'})
+        return jsonify({'success': False, 'message': 'Artist not found.'}), 404
+
 
 def get_spotify_access_token():
     auth_url = 'https://accounts.spotify.com/api/token'
