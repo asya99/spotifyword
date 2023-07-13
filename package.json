@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "lyricsgenius": "^3.0.1",
-    "python-dotenv": "^0.19.1",
-    "spotipy": "^2.19.0"
+    "python-dotenv": "^0.19.1"
   },
   "engines": {
     "node": "14.0.0"
