@@ -6,9 +6,6 @@
   "scripts": {
     "start": "python app.py"
   },
-  "dependencies": {
-    "lyricsgenius": "^3.0.1"
-  },
   "engines": {
     "node": "14.0.0"
   }
