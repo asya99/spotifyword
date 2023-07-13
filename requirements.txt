@@ -1,5 +1,5 @@
-requests
-pyhamcrest
-xmltodict
-pytest
-mock
+Flask==2.0.1
+lyricsgenius==3.0.1
+nltk==3.6.2
+langdetect==1.0.9
+requests==2.26.0
