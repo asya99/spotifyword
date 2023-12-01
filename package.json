@@ -1,12 +1,13 @@
 {
-  "name": "flask-app",
-  "version": "1.0.0",
-  "description": "Flask Application",
-  "main": "app.py",
-  "scripts": {
-    "start": "python app.py"
-  },
-  "engines": {
-    "node": "14.0.0"
+    "name": "frontend-app",
+    "version": "1.0.0",
+    "description": "Frontend Application",
+    "main": "index.html",
+    "scripts": {
+      "start": "http-server"
+    },
+    "devDependencies": {
+      "http-server": "^0.12.3"
+    }
   }
-}
+  
